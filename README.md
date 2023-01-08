@@ -21,7 +21,7 @@ pip install virtualenv
 
 After installing this virtual environment package, the environment need to be created.
 ```bash
-python3 -m venv myenv
+python -m venv myenv
 ```
 
 The virtual environment needs to be activiated in order for it to be used. 

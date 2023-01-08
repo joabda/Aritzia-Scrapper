@@ -27,10 +27,6 @@ if SAVE_HTML_TO_FILE == None:
     SAVE_HTML_TO_FILE = 0
 SAVE_HTML_TO_FILE = float(SAVE_HTML_TO_FILE)
 
-ARITZIA_URL = environ.get("ARITZIA_URL")
-if ARITZIA_URL == None:
-    ARITZIA_URL = ""
-
 
 def get_all_urls_to_scan() -> list[str]:
     
@@ -51,9 +47,14 @@ def action(urls: list[str]) -> None:
 
     for url in urls:
         print("..................................................................................")
-        print(f"Reading first URL {url}")
+        print(f"Reading URL {url}")
 
-        html = Scrapper(url).get_html()
+        html = ""
+        try:
+            html = Scrapper(url).get_html()
+        except: 
+            print(f"Error, invalid URL: {url}")
+            continue
 
         try:
             if SAVE_HTML_TO_FILE:
