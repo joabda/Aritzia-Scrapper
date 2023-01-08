@@ -6,17 +6,12 @@ It will also store the metadata relative to an item into a MongoDB database as w
 
 The script will mark the first and last time an item was seen on the Aritzia's website.
 
+#### Flow diagram
+![Flow Control Diagram](https://github.com/joabda/Aritzia-Scrapper/blob/main/Aritzia%20Scrapper.jpg?raw=true)
+
 ## Requirements
 - [Python 3](https://www.python.org/downloads/)
 - [Pip](https://pip.pypa.io/en/stable/cli/pip_install/) (Package Manager)
-- [Chromium Web Driver](https://chromedriver.chromium.org/downloads)
-
-## Usage
-From the base directory of this project, you'll need to start the python process to start the application. 
-
-```bash
-python main.py
-```
 
 ## Environment
 This project is setup to use Python virtual environments. 
@@ -35,6 +30,12 @@ The virtual environment needs to be activiated in order for it to be used.
 myenv\Scripts\activate
 ```
 
+### Variables
+- **MONGODB_URL** => URL of the desired MongoDB database.
+- **URL_FILE** => Name of the file containing all the Aritzia URL(s) to be scanned
+- **SAVE_HTML_TO_FILE** => If you want the webpage to be saved as HTML file set as 1, if not set as 0
+- **WAIT_BETWEEN_EXECUTIONS_IN_SECONDS** => Time to be elapsed between the executions of the scrapping
+
 # Dependencies
 After creating the environment and activating it. Some package dependencies need to be installed for the script to work property. 
 In order to install these packages execute the following command.
@@ -42,6 +43,13 @@ In order to install these packages execute the following command.
 pip install -r Requirements.txt
 ```
 Requirements.txt is the file that contains a list of packages with the versions used during development.
+
+## Usage
+From the base directory of this project, you'll need to start the python process to start the application. 
+
+```bash
+python main.py
+```
 
 ## License
 
