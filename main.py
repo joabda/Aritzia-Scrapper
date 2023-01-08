@@ -29,7 +29,14 @@ SAVE_HTML_TO_FILE = float(SAVE_HTML_TO_FILE)
 
 
 def get_all_urls_to_scan() -> list[str]:
-    
+    """Function used to read all lines of a file into a list.
+            Each line is an element of the list. 
+            Each line a different URL that'll be used for scrapping. 
+
+    Returns
+    ----------
+    List of string being the URLs.
+    """
     url_file = environ.get("URL_FILE")
     if url_file == None:
         url_file = ""
@@ -40,7 +47,9 @@ def get_all_urls_to_scan() -> list[str]:
     return urls
 
 def action(urls: list[str]) -> None:
-    global db, scheduler, WAIT_BETWEEN_EXECUTIONS_IN_SECONDS, SAVE_HTML_TO_FILE, ARITZIA_URL
+    """Code logic, being executed every X amount of time.
+    """
+    global db, scheduler, WAIT_BETWEEN_EXECUTIONS_IN_SECONDS, SAVE_HTML_TO_FILE
 
     print("==================================================================================")
     print("Starting execution")
@@ -76,8 +85,11 @@ def action(urls: list[str]) -> None:
 
 
 if __name__ == "__main__":
-
     # Loading .env variables
     load_dotenv(join(dirname(__file__), '.env'))
+    
+    # First run of the program
     action(get_all_urls_to_scan())
+    
+    # Starting the scheduler
     scheduler.run()
