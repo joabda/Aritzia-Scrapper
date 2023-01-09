@@ -67,8 +67,7 @@ class Scrapper:
         """
         last_height = self.driver.execute_script(
             "return document.body.scrollHeight")
-        counter = 0
-        while True and counter < 5:
+        while True:
             # Scroll down to bottom
             self.driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
@@ -88,9 +87,7 @@ class Scrapper:
 
             # Wait to load page
             time.sleep(2)
-            counter += 1
-
-        counter *= 2
+        
         return self.driver.page_source
 
 def download_image(name: str, url: str) -> None:

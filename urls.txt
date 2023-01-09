@@ -1,2 +1,16 @@
-https://www.aritzia.com/en/clothing
+https://www.aritzia.com/en/clothing/coats-jackets
+https://www.aritzia.com/en/clothing/sweaters
+https://www.aritzia.com/en/clothing/pants
+https://www.aritzia.com/en/clothing/blouses
+https://www.aritzia.com/en/clothing/sweatsuit-sets
+https://www.aritzia.com/en/clothing/tshirts
+https://www.aritzia.com/en/clothing/jumpsuits-rompers
 https://www.aritzia.com/en/clothing/bodysuits
+https://www.aritzia.com/en/clothing/dresses
+https://www.aritzia.com/en/clothing/coats-jackets/shirt-jacket
+https://www.aritzia.com/en/clothing/womens-workout-clothes
+https://www.aritzia.com/en/clothing/coats-jackets/jackets/jackets-blazer
+https://www.aritzia.com/en/clothing/skirts
+https://www.aritzia.com/en/clothing/accessories
+https://www.aritzia.com/en/clothing/jeans
+https://www.aritzia.com/en/clothing/shoes

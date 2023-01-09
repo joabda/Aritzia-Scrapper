@@ -76,11 +76,11 @@ def action(urls: list[str]) -> None:
         data = AritziaPaser(html).get_parsed_data()
 
         db.insert_and_update("Items", data)
-
-        print(f"Next execution in {WAIT_BETWEEN_EXECUTIONS_IN_SECONDS}s")
         print("..................................................................................")
         
     scheduler.enter(WAIT_BETWEEN_EXECUTIONS_IN_SECONDS, 1, action, (get_all_urls_to_scan(), ))
+
+    print(f"Next execution in {WAIT_BETWEEN_EXECUTIONS_IN_SECONDS}s")
     print("==================================================================================")
 
 
