@@ -14,6 +14,7 @@ from selenium.webdriver.chrome.options  import Options
 from webdriver_manager.chrome           import ChromeDriverManager
 import time
 import requests
+import string
 
 IMAGE_PATH=environ.get("IMAGE_STORAGE_PATH")
 if IMAGE_PATH == None:
@@ -90,6 +91,20 @@ class Scrapper:
         
         return self.driver.page_source
 
+def format_filename(s: str) -> str:
+    """Take a string and return a valid filename constructed from the string.
+            Uses a whitelist approach: any characters not present in valid_chars are
+            removed. Also spaces are replaced with underscores.
+            
+            Note: this method may produce invalid filenames such as ``, `.` or `..`
+            When I use this method I prepend a date string like '2009_01_15_19_46_32_'
+            and append a file extension like '.txt', so I avoid the potential of using
+            an invalid filename.
+    
+    """
+    valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+    return ''.join(c for c in s if c in valid_chars).replace(' ','_') # I don't like spaces in filenames.
+
 def download_image(name: str, url: str) -> None:
     """Function used to download the product's image from
             it's parsed image URL.
@@ -103,5 +118,5 @@ def download_image(name: str, url: str) -> None:
     """
     global IMAGE_PATH
     im = Image.open(requests.get(url, stream=True).raw)
-    im.save(f"images/{name}.jpg")
+    im.save(f"images/{format_filename(f'{name}.jpg')}")
     print(f"New image download {name} from {url}.")
