@@ -16,12 +16,6 @@ import time
 import requests
 import string
 
-IMAGE_PATH=environ.get("IMAGE_STORAGE_PATH")
-if IMAGE_PATH == None:
-    IMAGE_PATH="./"
-
-
-
 class Scrapper:
     """
     Class used to scrap a given URL using the selenium library
@@ -105,6 +99,8 @@ def format_filename(s: str) -> str:
     valid_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
     return ''.join(c for c in s if c in valid_chars).replace(' ','_') # I don't like spaces in filenames.
 
+
+image_number = 0
 def download_image(name: str, url: str) -> None:
     """Function used to download the product's image from
             it's parsed image URL.
@@ -116,7 +112,11 @@ def download_image(name: str, url: str) -> None:
     url : str
         url of the image to be downloaded
     """
-    global IMAGE_PATH
-    im = Image.open(requests.get(url, stream=True).raw)
-    im.save(f"images/{format_filename(f'{name}.jpg')}")
-    print(f"New image download {name} from {url}.")
+    global image_number
+    try:
+        im = Image.open(requests.get(url, stream=True).raw)
+        im.save(f"images/{format_filename(f'{image_number}-{name}.jpg')}")
+        print(f"#{image_number} New image download {name} from {url}.")
+        image_number += 1
+    except:
+        print(f"Error saving image for {name} from {url}")

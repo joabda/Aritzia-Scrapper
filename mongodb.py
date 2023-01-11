@@ -116,14 +116,17 @@ class MongoDB_Client:
         number_of_documents = len(documents)
         number_of_documents_inserted = 0
 
-        if number_of_documents > 0:
-            number_of_documents_inserted = len(
-                self.database[collection].insert_many(documents).inserted_ids)
-            ret = number_of_documents_inserted == number_of_documents
-
-            for doc in documents:
+        for doc in documents:
+            try:
+                print(f"#{number_of_documents_inserted} Successfully inserted {doc['name']}")
+                self.database[collection].insert_one(doc)
                 download_image(doc["name"], doc["path"])
+                number_of_documents_inserted += 1
+            except:
+                print(f"Error with product {doc['name']}")
 
+        ret = number_of_documents_inserted == number_of_documents
+        
         if ret:
             print(f"Successfully inserted #{number_of_documents} document " +
                   f"into {self.db_name}.{collection}")
